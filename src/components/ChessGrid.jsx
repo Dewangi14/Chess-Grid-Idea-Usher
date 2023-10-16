@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
 
 function ChessGrid() {
-  const chessboard = Array(8)
-    .fill(null)
-    .map(() => Array(8).fill(null));
 
-  const [active, setActive] = useState(null);
+    // array of arrays for chess grid
+    const chessboard = Array(8)
+      .fill(null)
+      .map(() => Array(8).fill(null));
 
-  console.log("activee: ", active);
+    const [active, setActive] = useState(null); // state variable for indicating the active block
 
-function isRed(row,col)
-   { return active && active.row === row && active.col === col;}
+    //function to color the block according to activity
+    function isRed(row,col)
+    { return active && active.row === row && active.col === col;}
   
   
 
@@ -26,30 +27,12 @@ function isRed(row,col)
                   row: rowIndex,
                   col: colIndex
                 };
-
                 setActive(copy);
-
-                
-                //   if(e.currentTarget.style.backgroundColor!=="red")
-                //  { e.currentTarget.style.backgroundColor="red"}
-                // else {
-                //   if(rowIndex+colIndex % 2 === 0){
-                //     e.currentTarget.style.backgroundColor="black"
-                //     }
-                //   else{
-                //     e.currentTarget.style.backgroundColor="white"
-                //   }
-                // }
-             
               }}
               key={colIndex}
               style={{
                 width: "100px",
                 height: "100px",
-                // backgroundColor: `${
-                //   (rowIndex + colIndex) % 2 === 0 ? "black" : "white"
-                // }`,
-
                 backgroundColor:`${isRed(rowIndex,colIndex)?"red":(rowIndex+colIndex)%2===0?"black":"white"}`,
                 
                 cursor: "pointer",
